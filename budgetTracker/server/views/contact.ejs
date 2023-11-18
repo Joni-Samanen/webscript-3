@@ -1,0 +1,95 @@
+<%- include partials/header.ejs %>
+<link href="contact-styles.css" rel="stylesheet" />
+
+<div class="container">
+  <!-- page contents -->
+            <form action="mailto:joni.samanen@ontariotechu.net" ?subject="Message from website" enctype="text/plain" method="post" name="Form" onsubmit="return validateForm()">
+                <p>
+                    <label for="name">Name : </label>
+                    <input type="text" name="name" id="name" size="40" placeholder="Enter your full name here (minimum 4 characters)" required>
+                </p>
+                <p>
+                    <label for="email">Email : </label>
+                    <input type="email" name="email" id="email" placeholder="Enter your email here" required>
+                </p>
+                <p>
+                    <label for="feedback">Comments : </label><br>
+                    <textarea name="feedback" cols="60" rows="8" required></textarea>
+                </p>
+
+                <p>
+                    <label for="captcha">Captcha: What is <span id="captcha-question"></span>?</label>
+                    <input type="number" name="captcha" required>
+                </p>
+
+                <p>
+                    <input type="checkbox" name="maillist">
+                    <label for="maillist">Put me on your e-list!</label>
+                </p>
+                <p>
+                    <label for="where">How did you find us?</label>
+                    <select name="where">
+                        <option value="Search engine">Search engine</option>
+                        <option value="Word of mouth">Word of mouth</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </p>
+                <p>
+                    <label for="countries">Where do you live?</label>
+                    <input list="countries">
+                    <datalist id="countries">
+                        <!-- Your country options here -->
+                    </datalist>
+                </p>
+                <p>
+                    <input type="reset" value="Reset">
+                    <input type="submit" value="Submit">
+                </p>
+            </form>
+            <script>
+                // Generate a simple arithmetic captcha question
+                function generateCaptcha() {
+                    const num1 = Math.floor(Math.random() * 10);
+                    const num2 = Math.floor(Math.random() * 10);
+                    const operator = ['+', '-', '*'][Math.floor(Math.random() * 3)];
+                    const question = `${num1} ${operator} ${num2}`;
+                    document.getElementById('captcha-question').textContent = question;
+                    sessionStorage.setItem('captchaAnswer', eval(question));
+                }
+            
+                // Validate the form
+                function validateForm() {
+                    const nameInput = document.getElementById('name');
+                    const nameValue = nameInput.value.trim();
+            
+                    // Check if the name has at least 4 characters
+                    if (nameValue.length < 4) {
+                        alert('Please enter your full name (minimum 4 characters)');
+                        return false; // Prevent form submission
+                    }
+            
+                    const userAnswer = parseInt(document.getElementsByName('captcha')[0].value);
+                    const correctAnswer = parseInt(sessionStorage.getItem('captchaAnswer'));
+            
+                    if (userAnswer === correctAnswer) {
+                        // Captcha is correct, form can be submitted
+                        return true;
+                    } else {
+                        // Captcha is incorrect, show an error message
+                        alert('Captcha is incorrect. Please try again.');
+                        return false; // Prevent form submission
+                    }
+                }
+            
+                // Generate captcha when the page loads
+                generateCaptcha();
+            </script>
+</div>
+            <%- include partials/bottomnav.ejs %>
+
+
+
+
+
+
+

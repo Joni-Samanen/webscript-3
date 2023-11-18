@@ -1,0 +1,68 @@
+<%- include ../partials/header.ejs %>
+
+<!-- Content for the Edit page -->
+<div class="container-fluid px-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-offset-3 col-md-6">
+        <h1><%= title %></h1>
+        <form class="form-horizontal" method="post">
+          
+          <div class="form-group">
+            <label for="dateTextField">Date</label>
+            <input type="date"
+            class="form-control"
+            id="dateField"
+            placeholder="Enter date"
+            name="date" 
+            value="<%= entry.date %>
+            required>
+          </div>
+          <div class="form-group">
+              <label>Type</label>
+              <div class="form-check">
+                  <input type="radio" class="form-check-input" id="expenseRadio" name="type" value="entry.expense" required>
+                  <label class="form-check-label" for="expenseRadio">Expense</label>
+              </div>
+              <div class="form-check">
+                  <input type="radio" class="form-check-input" id="incomeRadio" name="type" value="entry.income" required>
+                  <label class="form-check-label" for="incomeRadio">Income</label>
+              </div>
+          </div>
+
+
+          <div class="form-group">
+            <label for="reasonTextField">Reason</label>
+            <textarea type="text" class="form-control"
+            id="reasonTextField"
+            placeholder="Enter reason"
+            name="reason" 
+            required>
+            <%= entry.reason %>
+            </textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="amountTextField">Amount ($)</label>
+            <input type="number" class="form-control"
+            id="dateField"
+            placeholder="Enter amount"
+            name="amount"
+            value"<%= entry.amount %>"
+            required>
+          </div>
+          <button class="features-icons-item>
+
+          <button class="features-icons-items" type="submit">
+            <i class="bi bi-send"></i> Submit
+          </button>
+          <button class="features-icons-items" type="submit">
+          <a href="/budget" class="btn btn-danger">
+            <i class="fas fa-undo"></i> Cancel</a>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+

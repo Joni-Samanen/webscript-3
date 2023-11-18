@@ -1,0 +1,45 @@
+<%- include ../partials/header.ejs %>
+<%- include ../partials/navbar.ejs %>
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Charts</h1>
+
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-offset-3 col-md-8">
+            <a href="budget/add" class="btn btn-primary" role="button">
+              <i class="fas fa-plus"></i>Add entry
+            </a>
+            <br>
+            <br>
+                <table class="table table-bordered table-striped table-hover">
+                <tr>
+                <th class="text-center">Date</th>
+                <th class="text-center">Type</th>
+                <th class="text-center">Reason</th>
+                <th class="text-center">Amount</th>
+                <th class="text-center">Edit</th>
+                <th class="text-center">Remove</th>
+                </tr>
+                <!-- repeat the template -->
+                <% for(let count=0; count<moneyflow.length; count ++) { %>
+                    <tr class="text-center">
+                    <td class="text-center"><%= moneyflow[count].date %></td>
+                    <td class="text-center"><%= moneyflow[count].type %></td>
+                    <td class="text-center"><%= moneyflow[count].reason %></td>
+                    <td class="text-center"><%= moneyflow[count].amount %></td>
+                    <td class="text-center">
+                      <a href="budget/edit/<%= moneyflow[count]._id %>" class="btn btn-primary">
+                        <i class="fas fa-edit"></i>Edit</a></td>
+                    <td class="text-center">
+                      <a href="budget/delete/<%= moneyflow[count]._id %>" class="btn btn-danger">
+                        <i class="fas fa-trash"></i>Remove</a></td>
+                    </tr>
+                <% } %>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include ../partials/bottomnav.ejs %>

@@ -1,0 +1,16 @@
+db.moneyflow.insert({"date":"2023-10-21","type":"income","amount":100,"reason":"gift"
+db.moneyflow.drop()
+db.moneyflow.remove({"amount": 50})
+db.moneyflow.updateOne({"_id":  ObjectId("6554019acd89903070ae2182")},{$set:{"amount": 600}})
+
+
+npm init
+npm install express-generator
+cd appname
+npm install latest
+npm install
+
+move app.js to "config" folder, fix paths accordingly
+npm install mongoose --save
+
+ksoaksoako in app.js
